@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 19,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "description": "base hidden config",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "debug",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "b ase",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "app",
+      "configurePreset": "release",
+      "description": "Build app",
+      "targets": [ "pc_club" ]
+    },
+    {
+      "name": "all",
+      "configurePreset": "release",
+      "description": "Build app and tests",
+      "targets": [ "pc_club", "test" ]
+    },
+    {
+      "name": "test",
+      "configurePreset": "release",
+      "description": "Run tests (CTest)",
+      "targets": [ "test" ]
+    }
+  ]
+}
